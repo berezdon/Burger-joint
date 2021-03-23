@@ -1,0 +1,30 @@
+@import url(../vendor/normalize.css);
+@import url(../fonts/fonts.css);
+@import url(../blocks/page/page.css);
+@import url(../blocks/screen/screen.css);
+@import url(../blocks/screen-start/screen-start.css);
+@import url(../blocks/screen-start/__button/screen-start__button.css);
+@import url(../blocks/screen-intermediate/screen-intermediate.css);
+@import url(../blocks/screen-intermediate/__button/screen-intermediate__button.css);
+@import url(../blocks/screen-home/screen-home.css);
+@import url(../blocks/screen-home/__header/screen-home__header.css);
+@import url(../blocks/screen-home/__header-button/screen-home__header-button.css);
+@import url(../blocks/screen-home/__title/screen-home__title.css);
+@import url(../blocks/screen-home/__content/screen-home__content.css);
+@import url(../blocks/screen-home/__content-category/screen-home__content-category.css);
+@import url(../blocks/screen-home/__content-buttons/screen-home__content-buttons.css);
+@import url(../blocks/screen-home/__content-buttons/_burgers/screen-home__content-buttons_burgers.css);
+@import url(../blocks/screen-home/__content-buttons/_salad/screen-home__content-buttons_salad.css);
+@import url(../blocks/screen-home/__content-buttons/_drink/screen-home__content-buttons_drink.css);
+@import url(../blocks/screen-home/__content-buttons/_coupons/screen-home__content-buttons_coupons.css);
+@import url(../blocks/screen-home/__content-buttons/_stocks/screen-home__content-buttons_stocks.css);
+@import url(../blocks/screen-home/__content-menu/screen-home__content-menu.css);
+
+
+@import url(../blocks/screen-home/__content-buttons/_active/screen-home__content-buttons_active.css);
+
+
+
+
+
+@import url(../blocks/screen/_opened/screen_opened.css);

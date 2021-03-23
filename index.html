@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Имитационный блок Бургерная</title>
+  <link rel="stylesheet" href="./pages/index.css?v1.0">
+</head>
+<body>
+  <main class="page">
+    <section class="screen screen-start screen_opened">
+      <button type="button" class="screen-start__button" aria-label="Сделать заказ">
+        НАЖМИТЕ, ЧТОБЫ СДЕЛАТЬ ЗАКАЗ
+      </button>
+    </section>
+    <section class="screen screen-intermediate">
+      <button type="button" class="screen-intermediate__button screen-intermediate__button-in-the-hall" aria-label="В зале">
+        В ЗАЛЕ
+      </button>
+      <button type="button" class="screen-intermediate__button screen-intermediate__button-takeaway" aria-label="С собой">
+        С СОБОЙ
+      </button>
+    </section>
+    <section class="screen screen-home">
+      <div class="screen-home__header">
+        <button type="button" class="screen-home__header-button" aria-label="Отмена">Отмена</button>
+        <h2 class="screen-home__title">
+          Добро пожаловать в “Мир бургеров”
+        </h2>
+      </div>
+      <div class="screen-home__content">
+        <div class="screen-home__content-category">
+          <button type="button" class="screen-home__content-buttons screen-home__content-buttons_burgers screen-home__content-buttons_active" aria-label="Бургеры">
+            <img src="./images/burger-icon.svg" alt="Иконка Бургеры">
+            Бургеры
+          </button>
+          <button type="button" class="screen-home__content-buttons screen-home__content-buttons_salad" aria-label="Салаты">
+            <img src="./images/salad-icon.svg" alt="Иконка Салаты">
+            Салаты
+          </button>
+          <button type="button" class="screen-home__content-buttons screen-home__content-buttons_drink" aria-label="Напитки">
+            <img src="./images/drink-icon.svg" alt="Иконка Напитки">
+            Напитки
+          </button>
+          <button type="button" class="screen-home__content-buttons screen-home__content-buttons_coupons" aria-label="Купоны">
+            <img src="./images/coupon-icon.svg" alt="Иконка Купоны">
+            Купоны
+          </button>
+          <button type="button" class="screen-home__content-buttons screen-home__content-buttons_stocks" aria-label="Акции">
+            <img src="./images/stock-icon.svg" alt="Иконка Акции">
+            Акции
+          </button>
+        </div>
+        <div class="screen-home__content-menu"></div>
+      </div>
+      <div class="screen-home__order">
+
+      </div>
+      <div class="screen-home__footer">
+
+      </div>
+    </section>
+  </main>
+<script src="scripts/index.js?v1.0" defer></script>
+</body>
+</html>
