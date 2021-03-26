@@ -24,43 +24,91 @@
     <section class="screen screen-home">
       <div class="screen-home__header">
         <button type="button" class="screen-home__header-button" aria-label="Отмена">Отмена</button>
-        <h2 class="screen-home__title">
+        <h1 class="screen-home__title">
           Добро пожаловать в “Мир бургеров”
-        </h2>
+        </h1>
       </div>
       <div class="screen-home__content">
         <div class="screen-home__content-category">
-          <button type="button" class="screen-home__content-buttons screen-home__content-buttons_burgers screen-home__content-buttons_active" aria-label="Бургеры">
+          <button type="button" class="screen-home__content-buttons screen-home__content-buttons_burgers screen-home__content-buttons_active" id="burgers" aria-label="Бургеры">
             <img src="./images/burger-icon.svg" alt="Иконка Бургеры">
             Бургеры
           </button>
-          <button type="button" class="screen-home__content-buttons screen-home__content-buttons_salad" aria-label="Салаты">
+          <button type="button" class="screen-home__content-buttons screen-home__content-buttons_salads" id="salads" aria-label="Салаты">
             <img src="./images/salad-icon.svg" alt="Иконка Салаты">
             Салаты
           </button>
-          <button type="button" class="screen-home__content-buttons screen-home__content-buttons_drink" aria-label="Напитки">
+          <button type="button" class="screen-home__content-buttons screen-home__content-buttons_drinks" id="drinks" aria-label="Напитки">
             <img src="./images/drink-icon.svg" alt="Иконка Напитки">
             Напитки
           </button>
-          <button type="button" class="screen-home__content-buttons screen-home__content-buttons_coupons" aria-label="Купоны">
+          <button type="button" class="screen-home__content-buttons screen-home__content-buttons_coupons" id="coupons" aria-label="Купоны">
             <img src="./images/coupon-icon.svg" alt="Иконка Купоны">
             Купоны
           </button>
-          <button type="button" class="screen-home__content-buttons screen-home__content-buttons_stocks" aria-label="Акции">
+          <button type="button" class="screen-home__content-buttons screen-home__content-buttons_stocks" id="stocks" aria-label="Акции">
             <img src="./images/stock-icon.svg" alt="Иконка Акции">
             Акции
           </button>
         </div>
-        <div class="screen-home__content-menu"></div>
+        <div class="screen-home__content-menu screen-home__burgers screen-home__content-menu_display_flex"></div>
+        <div class="screen-home__content-menu screen-home__salads"></div>
+        <div class="screen-home__content-menu screen-home__drinks"></div>
+        <div class="screen-home__content-menu screen-home__coupons"></div>
+        <div class="screen-home__content-menu screen-home__stocks"></div>
       </div>
       <div class="screen-home__order">
-
+        <div class="screen-home__order-content"></div>
+        <div class="screen-home__order-arrows">
+          <button type="button" class="screen-home__order-arrow screen-home__order-arrow_top" aria-label="Стрелка вверх">
+            <img class="screen-home__order-arrow-image" src="./images/arrow-top.svg" alt="Стрелка вверх">
+          </button>
+          <button type="button" class="screen-home__order-arrow screen-home__order-arrow_bottom" aria-label="Стрелка вниз">
+            <img class="screen-home__order-arrow-image" src="./images/arrow-bottom.svg" alt="Стрелка вниз">
+          </button>
+        </div>
       </div>
       <div class="screen-home__footer">
-
+        <p class="screen-home__footer-total">Сумма заказа: <span class="screen-home__footer-total-price">0</span> руб </p>
+        <button type="button" class="screen-home__footer-button" aria-label="Оплатить">ОПЛАТИТЬ</button>
       </div>
     </section>
   </main>
-<script src="scripts/index.js?v1.0" defer></script>
+  <template class="card-product">
+    <div class="product">
+      <p class="product__text product__text_name"></p>
+      <div class="product__right">
+        <p class="product__text"><span class="product__price"></span> руб</p>
+        <button type="button" class="product__button product__button_add-to-order" aria-label="Добавить в заказ">Добавить в заказ</button>
+        <div class="product__button product__button_added-to-order product__button_display_none">
+          <button type="button" class="product__button-change product__button-change_minus">-</button>
+          <p class="product__change">1</p>
+          <button type="button" class="product__button-change product__button-change_plus">+</button>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template class="card-coupon">
+    <form class="coupon">
+      <p class="coupon__title">
+        Участвуйте в программе “Постоянный клиент” и получайте
+        индивидуальный купон после каждого заказа.
+      </p>
+      <label class="coupon__label" for="coupon-input">У меня есть купон:</label>
+      <input type="text" class="coupon__input" placeholder="Введите купон" name="coupon" id="coupon-input" required minlength="2" maxlength="30">
+      <button type="button" class="coupon__button-description  coupon__button-submit_inactive" aria-label="Описание" disabled>ЧИТАТЬ ОПИСАНИЕ</button>
+      <p class="coupon__input-error coupon-input-error"></p>
+      <button type="submit" class="coupon__button-submit coupon__button-submit_inactive" aria-label="Применить" disabled>ПРИМЕНИТЬ</button>
+    </form>
+  </template>
+  <template class="card-order">
+    <div class="order">
+      <button type="button" class="order__delete-button" aria-label="Удалить">X</button>
+      <p class="order__text">
+        <span class="order__name"></span> x <span class="order__quantity"></span>
+      </p>
+    </div>
+  </template>
+<script type="module" src="scripts/index.js?v1.0" defer></script>
 </body>
 </html>

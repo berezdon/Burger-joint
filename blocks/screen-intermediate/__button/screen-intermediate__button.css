@@ -10,6 +10,11 @@
   font-size: calc(100vw / (760 / 48));
   line-height: 1.2;
   color: #145799;
+  transition: opacity 0.2s linear;
+}
+
+.screen-intermediate__button:hover {
+  opacity: 0.8;
 }
 
 .screen-intermediate__button:active {

@@ -1,4 +1,7 @@
 .screen-home__content-menu {
+  display: none;
+  flex-direction: column;
+  align-items: center;
   width: calc(100vw / (760 / 389));
   height: calc(100vw / (760 / 495));
   background-color: #FBF9EE;
