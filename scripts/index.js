@@ -1,92 +1,27 @@
+import {
+  initialCardsBurgers,
+  initialCardsSalads,
+  initialCardsDrinks,
+  homeScreen,
+  total,
+  order,
+  intermediateScreen,
+  orderArrowTop,
+  orderArrowBottom,
+  initialCoupons as inc
+} from './constants.js';
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
+import {couponReadTheDescription} from './couponReadTheDescription.js'
+import {OrderCoupon} from './Order.js';
+import {submitCoupon} from "./submitCoupon.js";
+import {calculatingTheTotal} from './calculatingTheTotal.js';
 
 const startScreen = document.querySelector('.screen-start');
-const intermediateScreen = document.querySelector('.screen-intermediate');
-const homeScreen = document.querySelector('.screen-home');
 const intermediateScreenButtons = intermediateScreen.querySelectorAll('.screen-intermediate__button');
 const cancelButton = homeScreen.querySelector('.screen-home__header-button');
 const contentButtons = homeScreen.querySelectorAll('.screen-home__content-buttons');
 const contentMenu = homeScreen.querySelectorAll('.screen-home__content-menu');
-const initialCardsBurgers = [
-  {
-    name: 'Гавайский бургер',
-    price: 225
-  },
-  {
-    name: 'Греческий бургер',
-    price: 280
-  },
-  {
-    name: 'Тайский бургер',
-    price: 250
-  },
-  {
-    name: 'Бургер от шефа',
-    price: 350
-  },
-  {
-    name: 'Чизбургер',
-    price: 210
-  },
-  {
-    name: 'Вегетарианский бургер',
-    price: 185
-  }
-]
-const initialCardsSalads = [
-  {
-    name: 'Гавайский салат',
-    price: 220
-  },
-  {
-    name: 'Греческий салат',
-    price: 165
-  },
-  {
-    name: 'Тайский салат',
-    price: 180
-  },
-  {
-    name: 'Салат Цезарь',
-    price: 290
-  },
-  {
-    name: 'Овощной салат',
-    price: 150
-  },
-]
-
-const initialCardsDrinks = [
-  {
-    name: 'Гавайский смузи',
-    price: 190
-  },
-  {
-    name: 'Греческий кофе',
-    price: 105
-  },
-  {
-    name: 'Тайский синий чай',
-    price: 140
-  },
-  {
-    name: 'Зелёный чай',
-    price: 45
-  },
-  {
-    name: 'Чёрный чай',
-    price: 45
-  },
-  {
-    name: 'Молочный коктейль',
-    price: 130
-  },
-  {
-    name: 'Лимонад',
-    price: 80
-  }
-]
 
 const formClasses = {
   formSelector: '.coupon',
@@ -129,6 +64,7 @@ function cancelFunction() {
   closeScreen(homeScreen);
   addClassActive(contentButtons[0]);
   deleteCard();
+  clearTotal();
 }
 
 function initialCards(cards, screenHomeElement) {
@@ -149,6 +85,10 @@ function initialCoupons() {
     const form = new FormValidator(formClasses, item);
     form.enableValidation();
   });
+  const couponButtonDescription = homeScreen.querySelector('.coupon__button-description');
+  couponButtonDescription.addEventListener('click', couponReadTheDescription);
+  const formSubmitCoupon = document.forms.coupon;
+  formSubmitCoupon.addEventListener('submit', submitFormCoupon);
 }
 
 function deleteCard() {
@@ -164,6 +104,56 @@ function deleteCard() {
   })
 }
 
+function clearTotal() {
+  total.textContent = '0';
+}
+
+function scrollDown() {
+  const allOrder = order.querySelectorAll('.order');
+  const key = searchKey(allOrder);
+
+  Array.from(allOrder)[key].classList.add('order_display_none');
+  Array.from(allOrder)[key + 4].classList.remove('order_display_none');
+  if (orderArrowTop.classList.contains('screen-home__order-arrow_inactive')) {
+    orderArrowTop.classList.remove('screen-home__order-arrow_inactive');
+    orderArrowTop.disabled = false;
+  }
+  if (!Array.from(allOrder)[key + 5]) {
+    orderArrowBottom.classList.add('screen-home__order-arrow_inactive');
+    orderArrowBottom.disabled = true;
+  }
+}
+
+function scrollUp() {
+  const allOrder = order.querySelectorAll('.order');
+  const key = searchKey(allOrder);
+
+  Array.from(allOrder)[key + 3].classList.add('order_display_none');
+  Array.from(allOrder)[key - 1].classList.remove('order_display_none');
+  if (orderArrowBottom.classList.contains('screen-home__order-arrow_inactive')){
+    orderArrowBottom.classList.remove('screen-home__order-arrow_inactive');
+    orderArrowBottom.disabled = false;
+  }
+  if (!Array.from(allOrder)[key - 2]) {
+    orderArrowTop.classList.add('screen-home__order-arrow_inactive');
+    orderArrowTop.disabled = true;
+  }
+}
+
+function searchKey(allOrder) {
+  for (let i=0; i<allOrder.length; i++) {
+    if (!Array.from(allOrder)[i].classList.contains('order_display_none')) {
+      return  i;
+    }
+  }
+}
+
+function submitFormCoupon(evt){
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+  submitCoupon();
+  calculatingTheTotal();
+}
+
 startScreen.addEventListener('click', (evt) => {
   handleClickOnScreen(evt);
   openScreen(intermediateScreen);
@@ -177,14 +167,18 @@ intermediateScreenButtons.forEach((button) => {
     initialCards(initialCardsDrinks, '.screen-home__drinks');
     initialCoupons();
   })
-})
+});
+
 cancelButton.addEventListener('click', () => {
   cancelFunction();
   openScreen(startScreen);
-})
+});
 
 contentButtons.forEach((button) => {
   button.addEventListener('click', () => {
     addClassActive(button);
   });
 });
+
+orderArrowBottom.addEventListener('click', scrollDown);
+orderArrowTop.addEventListener('click', scrollUp);

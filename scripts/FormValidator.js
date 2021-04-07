@@ -1,3 +1,5 @@
+import {homeScreen} from "./constants.js";
+
 export class FormValidator {
   constructor(data, form) {
     this._form = form;
@@ -15,6 +17,10 @@ export class FormValidator {
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = inputElement.validationMessage;
     errorElement.classList.add(this._errorClass);
+    //Относиться к доп валидации дополнительных p, выше стандартная валидация и после неё тоже
+    for (let i=0; i<8; i++){
+      homeScreen.querySelector(`.coupon__input-error_p${i}`).classList.remove('coupon__input_type_message');
+    }
   }
 
   _hideInputError(inputElement) {

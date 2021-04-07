@@ -1,4 +1,7 @@
-import {Order} from './Order.js';
+import {OrderProduct} from './Order.js';
+import {calculatingTheTotal} from './calculatingTheTotal.js';
+import {stateOfTheArrows} from './stateOfTheArrows.js';
+import {order as ord} from './constants.js';
 
 export class Card {
   constructor(data, cardSelector) {
@@ -16,8 +19,15 @@ export class Card {
   }
 
   _setEventListeners() {
+    const elementNumberMenu = this._element.querySelector('.product__change');
     this._element.querySelector('.product__button').addEventListener('click', () => {
       this._handleTheAddToOrderButton();
+    });
+    this._element.querySelector('.product__button-change_plus').addEventListener('click', () => {
+      this._clickingOnThePlusSign(elementNumberMenu);
+    });
+    this._element.querySelector('.product__button-change_minus').addEventListener('click', () => {
+      this._clickingOnTheMinusSign(elementNumberMenu);
     });
   }
 
@@ -27,10 +37,64 @@ export class Card {
     this._element.querySelector('.product__button_added-to-order').classList.remove('product__button_display_none');
     const name = this._name;
     const quantity = 1;
-    const orderContent = document.querySelector('.screen-home__order-content');
-    const order = new Order({name, quantity});
+    const order = new OrderProduct({name, quantity}, '.card-order');
     const cardElement = order.generateCard();
-    orderContent.append(cardElement);
+    ord.prepend(cardElement);
+    stateOfTheArrows();
+    calculatingTheTotal();
+  }
+
+  _numberMenu() {return Number(this._element.querySelector('.product__change').textContent);}
+
+  _clickingOnThePlusSign(elementNumberMenu) {
+    let numberMenu = this._numberMenu();
+    if (numberMenu < 9) {
+      numberMenu += 1;
+      elementNumberMenu.textContent = numberMenu;
+      const orderNameAll = document.querySelectorAll('.order__name');
+      orderNameAll.forEach((orderName) => {
+        if (orderName.textContent === this._name) {
+          const orderElement = orderName.closest('.order__text').querySelector('.order__quantity');
+          let numberOrder = Number(orderElement.textContent);
+          if (numberOrder < 9) {
+            numberOrder += 1;
+            orderElement.textContent = String(numberOrder);
+          }
+        }
+      });
+    }
+    calculatingTheTotal();
+  }
+
+  _clickingOnTheMinusSign(elementNumberMenu) {
+    let numberMenu = this._numberMenu();
+    if (numberMenu > 0) {
+      numberMenu -= 1;
+      elementNumberMenu.textContent = numberMenu;
+      const orderNameAll = document.querySelectorAll('.order__name');
+      orderNameAll.forEach((orderName) => {
+        if (orderName.textContent === this._name) {
+          const orderElement = orderName.closest('.order__text').querySelector('.order__quantity');
+          let numberOrder = Number(orderElement.textContent);
+          if (numberOrder > 1) {
+            numberOrder -= 1;
+            orderElement.textContent = String(numberOrder);
+          }
+        }
+      });
+    }
+    if (numberMenu === 0) {
+      const allOrderText = ord.querySelectorAll('.order__name');
+      const orderElement = Array.from(allOrderText).find((orderText) => {
+        if (orderText.textContent === this._name) return true;
+      })
+      orderElement.closest('.order').remove();
+      this._element.classList.remove('product_add-to-order');
+      this._element.querySelector('.product__button_added-to-order').classList.add('product__button_display_none');
+      this._element.querySelector('.product__button_add-to-order').classList.remove('product__button_display_none');
+      this._element.querySelector('.product__change').textContent = '1';
+    }
+    calculatingTheTotal();
   }
 
   generateCard() {

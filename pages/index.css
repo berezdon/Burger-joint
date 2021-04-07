@@ -37,18 +37,22 @@
 @import url(../blocks/coupon/__button-description/coupon__button-description.css);
 @import url(../blocks/coupon/__input-error/coupon__input-error.css);
 @import url(../blocks/coupon/__input-error/_active/coupon__input-error_active.css);
+@import url(../blocks/coupon/__input-error/_p0/coupon__input-error_p0.css);
+@import url(../blocks/coupon/__input-error/_p7/coupon__input-error_p7.css);
+@import url(../blocks/coupon/__input/_type_message/coupon__input_type_message.css);
 @import url(../blocks/coupon/__description/coupon__description.css);
 @import url(../blocks/coupon/__button-submit/coupon__button-submit.css);
 @import url(../blocks/coupon/__button-submit/_inactive/coupon__button-submit_inactive.css);
 @import url(../blocks/screen-home/__order/screen-home__order.css);
 @import url(../blocks/screen-home/__order-content/screen-home__order-content.css);
 @import url(../blocks/order/order.css);
+@import url(../blocks/order/_display_none/order_display_none.css);
 @import url(../blocks/order/__delete-button/order__delete-button.css);
 @import url(../blocks/order/__text/order__text.css);
 @import url(../blocks/screen-home/__order-arrows/screen-home__order-arrows.css);
 @import url(../blocks/screen-home/__order-arrow/screen-home__order-arrow.css);
 @import url(../blocks/screen-home/__order-arrow-image/screen-home__order-arrow-image.css);
-
+@import url(../blocks/screen-home/__order-arrows/_inactive/screen-home__order-arrow_inactive.css);
 
 @import url(../blocks/screen-home/__footer/screen-home__footer.css);
 @import url(../blocks/screen-home/__footer-total/screen-home__footer-total.css);
