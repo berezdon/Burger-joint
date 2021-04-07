@@ -206,14 +206,48 @@ function fullSet(allOrder) {
   fullSetArrayDrink.sort(sortProducts);
 
   while (fullSetArrayBurger.length > 0 && fullSetArraySalad.length > 0 && fullSetArrayDrink.length > 0){
-    const burgerPrice = fullSetArrayBurger[0].obj.price;
+    const burgerName =  fullSetArrayBurger[0].obj.name;
+    let burgerPrice = 0;
+    if (nameDiscount === 'aloha10' && burgerName === 'Гавайский бургер')
+      burgerPrice = fullSetArrayBurger[0].obj.price * discount2;
+    else if (nameDiscount === 'eureka10' && burgerName === 'Греческий бургер')
+      burgerPrice = fullSetArrayBurger[0].obj.price * discount2;
+    else burgerPrice = fullSetArrayBurger[0].obj.price
     const burgerQuantity = fullSetArrayBurger[0].orderQuantityValue;
-    const saladPrice = fullSetArraySalad[0].obj.price;
+
+
+    const saladName =  fullSetArraySalad[0].obj.name;
+    let saladPrice = 0;
+    if (nameDiscount === 'aloha10' && saladName === 'Гавайский салат')
+      saladPrice = fullSetArraySalad[0].obj.price * discount2;
+    else if (nameDiscount === 'eureka10' && saladName === 'Греческий салат')
+      saladPrice = fullSetArraySalad[0].obj.price * discount2;
+    else saladPrice = fullSetArraySalad[0].obj.price;
     const saladQuantity = fullSetArraySalad[0].orderQuantityValue;
-    const drinkPrice = fullSetArrayDrink[0].obj.price;
+
+    const drinkName =  fullSetArrayDrink[0].obj.name;
+    let drinkPrice = 0;
+    if (nameDiscount === 'aloha10' && drinkName === 'Гавайский смузи')
+      drinkPrice = fullSetArrayDrink[0].obj.price * discount2;
+    else if (nameDiscount === 'eureka10' && drinkName === 'Греческий кофе')
+      drinkPrice = fullSetArrayDrink[0].obj.price * discount2;
+    else if (nameDiscount === 'AJ56YT')
+      drinkPrice = fullSetArrayDrink[0].obj.price * discount2;
+    else if (nameDiscount === 'LOVETEA' && (drinkName === 'Тайский синий чай' ||
+      drinkName === 'Зелёный чай' ||
+      drinkName === 'Чёрный чай'))
+      drinkPrice = fullSetArrayDrink[0].obj.price * discount2;
+    else drinkPrice = fullSetArrayDrink[0].obj.price;
     const drinkQuantity = fullSetArrayDrink[0].orderQuantityValue;
-    const sum = burgerPrice + saladPrice + drinkPrice;
-    total.textContent = String(Number(total.textContent) - sum + sum * 0.85);
+
+    const sum = (burgerPrice + saladPrice + drinkPrice) * discount;
+
+    console.log(discount);
+    console.log(nameDiscount);
+    console.log(discount2);
+    console.log(sum);
+    console.log(total.textContent);
+    total.textContent = String(Number(total.textContent) - sum  + sum * 0.85);
     if (burgerQuantity > 1) fullSetArrayBurger[0].orderQuantityValue -= 1;
     else fullSetArrayBurger.shift();
     if (saladQuantity > 1) fullSetArraySalad[0].orderQuantityValue -= 1;
