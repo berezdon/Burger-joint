@@ -67,6 +67,12 @@ export function calculatingTheTotal() {
     crawlingObjectElements(initialCardsDrinks, orderName, orderQuantityValue, orderQuantityAll, numberPositions, discount22);
     crawlingObjectElements(initialCardsSalads, orderName, orderQuantityValue, orderQuantityAll, numberPositions, discount23);
   });
+  if (checkCoupon && (allOrder.length > 7)) total.textContent = String(Number(total.textContent) * 0.93);
+  else if (allOrder.length > 6) total.textContent = String(Number(total.textContent) * 0.93);
+
+  fullSet(allOrder);
+
+  total.textContent = String(roundingUp(Number(total.textContent)));
 }
 
 function crawlingObjectElements(object, orderName, orderQuantity, orderQuantityAll, numberPositions, discount213) {
@@ -142,4 +148,77 @@ function checkDiscount(allOrder, name) {
     const orderName = order.querySelector('.order__name').textContent;
     if (orderName === name) return true
   });
+}
+
+
+function roundingUp(number) {
+  const remainder = Number((number * 100 % 100).toFixed(0));
+  let numberWithoutRemainder = Math.floor(number);
+
+  if (remainder >= 0 && remainder <= 12) return numberWithoutRemainder;
+  if(remainder >=13 && remainder <= 37) return numberWithoutRemainder + 0.25;
+  if (remainder >= 38 && remainder <= 62) return numberWithoutRemainder + 0.5;
+  if (remainder >= 63 && remainder <= 87) return numberWithoutRemainder + 0.75;
+  if (remainder >= 88 && remainder <= 99) return numberWithoutRemainder + 1;
+}
+
+function fullSet(allOrder) {
+  const fullSetArrayBurger = [];
+  const fullSetArraySalad = [];
+  const fullSetArrayDrink = [];
+  allOrder.forEach((order) => {
+    const orderName = order.querySelector('.order__name').textContent;
+    const orderQuantity = order.querySelector('.order__quantity')
+    const orderQuantityValue = Number(orderQuantity.textContent);
+    if (orderName.toLowerCase().includes('бургер')) {
+      initialCardsBurgers.find((obj) => {
+        if (obj.name === orderName) fullSetArrayBurger.push({obj, orderQuantityValue});
+      })
+    }
+    if (orderName.toLowerCase().includes('салат')) {
+      initialCardsSalads.find((obj) => {
+        if (obj.name === orderName) fullSetArraySalad.push({obj, orderQuantityValue});
+      })
+    }
+    if (orderName.toLowerCase().includes('смузи') ||
+      orderName.toLowerCase().includes('кофе') ||
+      orderName.toLowerCase().includes('чай') ||
+      orderName.toLowerCase().includes('коктейль') ||
+      orderName.toLowerCase().includes('лимонад')) {
+      initialCardsDrinks.find((obj) => {
+        if (obj.name === orderName) fullSetArrayDrink.push({obj, orderQuantityValue});
+      })
+    }
+  });
+
+  function sortProducts(a, b) {
+    if (a.obj.price > b.obj.price) {
+      return 1;
+    }
+    if (a.obj.price < b.obj.price) {
+      return -1;
+    }
+    return 0;
+  }
+
+  fullSetArrayBurger.sort(sortProducts);
+  fullSetArraySalad.sort(sortProducts);
+  fullSetArrayDrink.sort(sortProducts);
+
+  while (fullSetArrayBurger.length > 0 && fullSetArraySalad.length > 0 && fullSetArrayDrink.length > 0){
+    const burgerPrice = fullSetArrayBurger[0].obj.price;
+    const burgerQuantity = fullSetArrayBurger[0].orderQuantityValue;
+    const saladPrice = fullSetArraySalad[0].obj.price;
+    const saladQuantity = fullSetArraySalad[0].orderQuantityValue;
+    const drinkPrice = fullSetArrayDrink[0].obj.price;
+    const drinkQuantity = fullSetArrayDrink[0].orderQuantityValue;
+    const sum = burgerPrice + saladPrice + drinkPrice;
+    total.textContent = String(Number(total.textContent) - sum + sum * 0.85);
+    if (burgerQuantity > 1) fullSetArrayBurger[0].orderQuantityValue -= 1;
+    else fullSetArrayBurger.shift();
+    if (saladQuantity > 1) fullSetArraySalad[0].orderQuantityValue -= 1;
+    else fullSetArraySalad.shift();
+    if (drinkQuantity > 1) fullSetArrayDrink[0].orderQuantityValue -= 1;
+    else fullSetArrayDrink.shift();
+  }
 }
