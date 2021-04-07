@@ -241,12 +241,7 @@ function fullSet(allOrder) {
     const drinkQuantity = fullSetArrayDrink[0].orderQuantityValue;
 
     const sum = (burgerPrice + saladPrice + drinkPrice) * discount;
-
-    console.log(discount);
-    console.log(nameDiscount);
-    console.log(discount2);
-    console.log(sum);
-    console.log(total.textContent);
+    
     total.textContent = String(Number(total.textContent) - sum  + sum * 0.85);
     if (burgerQuantity > 1) fullSetArrayBurger[0].orderQuantityValue -= 1;
     else fullSetArrayBurger.shift();
