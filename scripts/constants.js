@@ -47,7 +47,7 @@ const initialCardsSalads = [
     price: 180
   },
   {
-    name: 'Салат Цезарь',
+    name: 'Салат «Цезарь»',
     price: 290
   },
   {
@@ -120,14 +120,14 @@ const initialCoupons = [
     quantity: 1
   },
   {
-    name: 'AJ56YT',
+    name: 'aj56yt',
     description: 'Купон aj56yt даёт скидку 30 % на все напитки.\n' +
       '\n\n\n\n\n\n' +
       'Возможно применить только один купон в заказе. При расчёте суммы заказа сначала применяется купон, а затем — акции.',
     quantity: 1
   },
   {
-    name: 'LOVETEA',
+    name: 'lovetea',
     description: 'Купон lovetea даёт скидку 40%\n' +
       'на все блюда из следующего списка\n' +
       '- тайский синий чай,\n' +
@@ -137,7 +137,7 @@ const initialCoupons = [
     quantity: 1
   },
   {
-    name: 'CF007',
+    name: 'cf007',
     description: 'Купон cf007 при заказе 3 и более\n' +
       'бургеров от шефа делает скидку 100%\n' +
       'на один из этих бургеров.\n' +

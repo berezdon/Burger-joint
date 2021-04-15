@@ -6,7 +6,7 @@ export function submitCoupon() {
   const couponInput = homeScreen.querySelector('.coupon__input');
   const couponInputMessageP0 = homeScreen.querySelector('.coupon__input-error_p0');
   const checkingCoupon = initialCoupons.find((coupon) => {
-    if (couponInput.value === coupon.name) return true;
+    if (couponInput.value.toLowerCase() === coupon.name) return true;
   });
 
   if (checkingCoupon) {
