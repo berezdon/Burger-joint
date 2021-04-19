@@ -159,7 +159,7 @@ function roundingUp(number) {
   if(remainder >=13 && remainder <= 37) return numberWithoutRemainder + 0.25;
   if (remainder >= 38 && remainder <= 62) return numberWithoutRemainder + 0.5;
   if (remainder >= 63 && remainder <= 87) return numberWithoutRemainder + 0.75;
-  if (remainder >= 88 && remainder <= 99) return numberWithoutRemainder + 1;
+  if (remainder >= 88 && remainder <= 100) return numberWithoutRemainder + 1;
 }
 
 function fullSet(allOrder) {
