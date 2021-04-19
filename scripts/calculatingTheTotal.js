@@ -51,9 +51,9 @@ export function calculatingTheTotal() {
     if (checkCoupon.name === 'aloha5500' && numberPositions === 3) {nameDiscount = 'aloha5500';}
     if (checkCoupon.name === 'aloha10') {discount2 = 0.9; nameDiscount = 'aloha10';}
     if (checkCoupon.name ==='eureka10') {discount2 = 0.9; nameDiscount = 'eureka10';}
-    if (checkCoupon.name ==='AJ56YT') {discount2 = 0.7; nameDiscount = 'AJ56YT';}
-    if (checkCoupon.name === 'LOVETEA') {discount2 = 0.6; nameDiscount = 'LOVETEA';}
-    if (checkCoupon.name === 'CF007') {discount2 = 1; nameDiscount = 'CF007';}
+    if (checkCoupon.name ==='aj56yt') {discount2 = 0.7; nameDiscount = 'AJ56YT';}
+    if (checkCoupon.name === 'lovetea') {discount2 = 0.6; nameDiscount = 'LOVETEA';}
+    if (checkCoupon.name === 'cf007') {discount2 = 1; nameDiscount = 'CF007';}
   }
   else {
     nameDiscount = '';
@@ -241,7 +241,7 @@ function fullSet(allOrder) {
     const drinkQuantity = fullSetArrayDrink[0].orderQuantityValue;
 
     const sum = (burgerPrice + saladPrice + drinkPrice) * discount;
-    
+
     total.textContent = String(Number(total.textContent) - sum  + sum * 0.85);
     if (burgerQuantity > 1) fullSetArrayBurger[0].orderQuantityValue -= 1;
     else fullSetArrayBurger.shift();
