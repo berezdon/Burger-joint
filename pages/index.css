@@ -55,6 +55,7 @@
 @import url(../blocks/screen-home/__order-arrows/_inactive/screen-home__order-arrow_inactive.css);
 @import url(../blocks/coupon/__title/_stocks/coupon__title_stocks.css);
 @import url(../blocks/stocks/stocks.css);
+@import url(../blocks/stocks/_height_on/stocks_height_one.css);
 @import url(../blocks/stocks/__title/stocks__title.css);
 @import url(../blocks/stocks/__text/stocks__text.css);
 @import url(../blocks/screen-home/__footer/screen-home__footer.css);
