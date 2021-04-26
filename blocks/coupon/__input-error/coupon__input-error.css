@@ -8,6 +8,7 @@
   color: #0C0C0D;
   margin: 0;
   opacity: 0;
+  text-indent: 0;
 }
 
 @media screen and (min-width: 777px){

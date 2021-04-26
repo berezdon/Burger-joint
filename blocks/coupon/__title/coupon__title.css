@@ -10,6 +10,7 @@
   border-bottom-style: solid;
   border-bottom-color: #000;
   margin: calc(100vw / (760 / 15)) 0 calc(100vw / (760 / 26));
+  text-indent: 0;
 }
 
 @media screen and (min-width: 777px){
