@@ -68,7 +68,7 @@ export function calculatingTheTotal() {
     crawlingObjectElements(initialCardsSalads, orderName, orderQuantityValue, orderQuantityAll, numberPositions, discount23);
   });
   if (checkCoupon && (allOrder.length > 7)) total.textContent = String(Number(total.textContent) * 0.93);
-  else if (allOrder.length > 6) total.textContent = String(Number(total.textContent) * 0.93);
+  else if (allOrder.length > 6 && !checkCoupon) total.textContent = String(Number(total.textContent) * 0.93);
 
   fullSet(allOrder);
 
