@@ -72,7 +72,7 @@ export function calculatingTheTotal() {
 
   fullSet(allOrder);
 
-  total.textContent = String(roundingUp(Number(total.textContent)));
+  total.textContent = String(Number(total.textContent).toFixed(2));
 }
 
 function crawlingObjectElements(object, orderName, orderQuantity, orderQuantityAll, numberPositions, discount213) {
@@ -148,18 +148,6 @@ function checkDiscount(allOrder, name) {
     const orderName = order.querySelector('.order__name').textContent;
     if (orderName === name) return true
   });
-}
-
-
-function roundingUp(number) {
-  const remainder = Number((number * 100 % 100).toFixed(0));
-  let numberWithoutRemainder = Math.floor(number);
-
-  if (remainder >= 0 && remainder <= 12) return numberWithoutRemainder;
-  if(remainder >=13 && remainder <= 37) return numberWithoutRemainder + 0.25;
-  if (remainder >= 38 && remainder <= 62) return numberWithoutRemainder + 0.5;
-  if (remainder >= 63 && remainder <= 87) return numberWithoutRemainder + 0.75;
-  if (remainder >= 88 && remainder <= 100) return numberWithoutRemainder + 1;
 }
 
 function fullSet(allOrder) {
