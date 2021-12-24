@@ -1,5 +1,5 @@
 .page {
-  zoom: 1.8;
+  zoom: 1.4;
   display: flex;
   justify-content: center;
   margin: 0 auto;
@@ -30,6 +30,6 @@
 
 @-moz-document url-prefix(){
   .page {
-    transform: scale(1.8);
+    transform: scale(1.4);
   }
 }
